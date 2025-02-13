@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Message for You ❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .message {
+            opacity: 0;
+            transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+        }
+        .fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        .floating-emoji, .green-heart {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            opacity: 0.5;
+            animation: float 5s infinite ease-in-out;
+            z-index: 1;
+        }
+        .green-heart {
+            color: green;
+            font-size: 40px;
+            opacity: 0.3;
+            animation-duration: 6s;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) translateX(-50%); opacity: 1; }
+            100% { transform: translateY(-150px) translateX(-50%); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p id="loading">Loading...</p>
+        <p id="message" class="message">Calculating how much I love you...<br> ERROR! Too much to count! ❤️</p>
+        <p id="softball" class="message">You are my MVP, both on and off the field! ⚾️</p>
+        <p id="pastries" class="message">Just like your pastries, you make life so much sweeter! 🧁</p>
+        <p id="food" class="message">Your tacos, pasta, and butter chicken? Simply the best! 🌮🍝🍛</p>
+        <p id="analyst" class="message">And you're the most resilient data analyst I know! 📊💡</p>
+        <p id="from" class="message">With love, Ely ❤️</p>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("message").style.opacity = 1;
+            setTimeout(() => document.getElementById("softball").style.opacity = 1, 4000);
+            setTimeout(() => document.getElementById("pastries").style.opacity = 1, 8000);
+            setTimeout(() => document.getElementById("food").style.opacity = 1, 12000);
+            setTimeout(() => document.getElementById("analyst").style.opacity = 1, 16000);
+            setTimeout(() => document.getElementById("from").style.opacity = 1, 20000);
+            setTimeout(() => {
+                document.querySelectorAll('.message').forEach(msg => msg.classList.add('fade-out'));
+            }, 25000);
+            
+            setInterval(() => {
+                let emojis = ["❤️", "⚾️", "🧁", "🌮", "🍝", "🍛", "📊", "💡"];
+                let emoji = document.createElement("div");
+                emoji.classList.add("floating-emoji");
+                emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                document.body.appendChild(emoji);
+                emoji.style.left = Math.random() * 100 + "vw";
+                emoji.style.animationDuration = Math.random() * 2 + 3 + "s";
+                setTimeout(() => emoji.remove(), 3000);
+            }, 300);
+            
+            setInterval(() => {
+                let greenHeart = document.createElement("div");
+                greenHeart.classList.add("green-heart");
+                greenHeart.innerHTML = "💚";
+                document.body.appendChild(greenHeart);
+                greenHeart.style.left = Math.random() * 100 + "vw";
+                greenHeart.style.animationDuration = Math.random() * 3 + 4 + "s";
+                setTimeout(() => greenHeart.remove(), 4000);
+            }, 500);
+        }, 2000);
+    </script>
+</body>
+</html>
