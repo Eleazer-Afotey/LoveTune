@@ -22,7 +22,7 @@
             font-weight: bold;
             z-index: 2;
         }
-        .message {
+        .message, .image-container {
             opacity: 0;
             transition: opacity 2s ease-in-out, transform 2s ease-in-out;
         }
@@ -46,6 +46,18 @@
             opacity: 0.3;
             animation-duration: 6s;
         }
+        .image-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
         @keyframes float {
             0% { transform: translateY(0) translateX(-50%); opacity: 1; }
             100% { transform: translateY(-150px) translateX(-50%); opacity: 0; }
@@ -62,6 +74,10 @@
         <p id="analyst" class="message">And you're the most resilient data analyst I know! 📊💡</p>
         <p id="from" class="message">With love, Ely ❤️</p>
     </div>
+    
+    <div id="image1" class="image-container" style="background-image: url('image1.jpg');"></div>
+    <div id="image2" class="image-container" style="background-image: url('image2.jpg');"></div>
+    <div id="image3" class="image-container" style="background-image: url('image3.jpg');"></div>
 
     <script>
         setTimeout(() => {
@@ -75,6 +91,18 @@
             setTimeout(() => {
                 document.querySelectorAll('.message').forEach(msg => msg.classList.add('fade-out'));
             }, 25000);
+            
+            let imageSequence = ["image1", "image2", "image3"];
+            let index = 0;
+            function showNextImage() {
+                document.getElementById(imageSequence[index]).style.opacity = 1;
+                setTimeout(() => {
+                    document.getElementById(imageSequence[index]).style.opacity = 0;
+                    index = (index + 1) % imageSequence.length;
+                    setTimeout(showNextImage, 3000);
+                }, 3000);
+            }
+            setTimeout(showNextImage, 5000);
             
             setInterval(() => {
                 let emojis = ["❤️", "⚾️", "🧁", "🌮", "🍝", "🍛", "📊", "💡"];
