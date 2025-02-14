@@ -22,7 +22,7 @@
             font-weight: bold;
             z-index: 2;
         }
-        .message, .image-container {
+        .message {
             opacity: 0;
             transition: opacity 2s ease-in-out, transform 2s ease-in-out;
         }
@@ -48,15 +48,14 @@
         }
         .image-container {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
+            width: 200px;
+            height: 200px;
             background-size: cover;
             background-position: center;
             border-radius: 20px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
         }
         @keyframes float {
             0% { transform: translateY(0) translateX(-50%); opacity: 1; }
@@ -75,10 +74,10 @@
         <p id="from" class="message">With love, Ely ❤️</p>
     </div>
     
-    <div id="image1" class="image-container" style="background-image: url('image1.jpeg');"></div>
-    <div id="image2" class="image-container" style="background-image: url('image2.jpeg');"></div>
-    <div id="image3" class="image-container" style="background-image: url('image3.jpeg');"></div>
-
+    <div id="image1" class="image-container" style="background-image: url('image1.jpg'); top: 10%; left: 10%;"></div>
+    <div id="image2" class="image-container" style="background-image: url('image2.jpg'); top: 10%; right: 10%;"></div>
+    <div id="image3" class="image-container" style="background-image: url('image3.jpg'); bottom: 10%; left: 20%;"></div>
+    
     <script>
         setTimeout(() => {
             document.getElementById("loading").style.display = "none";
